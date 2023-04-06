@@ -101,9 +101,18 @@ async function add({ username, password, role_name }) {
   return findById(created_user_id);
 }
 
+async function validRole(role_name) {
+  const selectRole = await db("roles")
+    .select("role_id", "role_name")
+    .where("role_name", role_name)
+    .first();
+  return selectRole;
+}
+
 module.exports = {
   add,
   find,
   findBy,
   findById,
+  validRole,
 };
