@@ -15,7 +15,9 @@ router.post("/register", validateRoleName, (req, res, next) => {
     }
    */
 
-  next();
+  const { username, password } = req.body;
+  const { role_name } = req;
+  res.json({ username, password, role_name });
 });
 
 router.post("/login", checkUsernameExists, (req, res, next) => {
